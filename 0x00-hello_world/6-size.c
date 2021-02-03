@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main - Begin of execution
+ *
+ * Return: 0 if success
+ */
 int main(void)
 {
 	printf("Size of a char: %d byte(s)\n", (int) sizeof(char));
