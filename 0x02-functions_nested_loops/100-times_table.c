@@ -35,7 +35,7 @@ void displayNumber(int number)
  */
 void squareTable(int n)
 {
-	int column = 0, row = 0, number;
+	int column, row, number;
 
 	for (row = 0; row <= n; row++)
 	{
