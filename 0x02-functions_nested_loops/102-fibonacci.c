@@ -62,9 +62,9 @@ long fibonacci(int limit, long memory[])
 int main(void)
 {
 	long memory[52];
-	int number = 0;
+	int number;
 
-	while (number <= 51)
+	for (number = 0; number <= 51; number++)
 	{
 		memory[number] = fibonacci(number, memory);
 
@@ -77,8 +77,6 @@ int main(void)
 		{
 			printf(", ");
 		}
-
-		number++;
 	}
 	printf("\n");
 
