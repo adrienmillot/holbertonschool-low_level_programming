@@ -73,7 +73,7 @@ int main(void)
 			printf("%ld", memory[number]);
 		}
 
-		if (number < 51)
+		if (number < 51 && number >= 2)
 		{
 			printf(", ");
 		}
