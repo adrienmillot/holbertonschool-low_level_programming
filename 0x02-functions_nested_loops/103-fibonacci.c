@@ -57,7 +57,7 @@ int main(void)
 		number++;
 	}
 
-	printf("%d", sum);
+	printf("%d\n", sum);
 
 	return (0);
 }
