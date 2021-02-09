@@ -10,8 +10,6 @@
  */
 int fibonacci(int limit, int memory[])
 {
-	int result = 0;
-
 	if (limit == 0)
 	{
 		memory[0] = 0;

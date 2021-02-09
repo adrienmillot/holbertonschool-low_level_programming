@@ -27,8 +27,6 @@ int firstDigit(int number)
  */
 long fibonacci(int limit, long memory[])
 {
-	int result = 0;
-
 	if (limit == 0)
 	{
 		memory[0] = 0;
