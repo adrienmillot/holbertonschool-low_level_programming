@@ -70,7 +70,12 @@ int main(void)
 
 		if (number >= 2)
 		{
-			printf("%ld, ", memory[number]);
+			printf("%ld", memory[number]);
+		}
+
+		if (number < 51)
+		{
+			printf(", ");
 		}
 
 		number++;
