@@ -9,13 +9,15 @@
  */
 void displayNumber(int number)
 {
+	int lastDigit;
+
 	if (number < 0)
 	{
 		_putchar('-');
 		number *= -1;
 	}
 
-	int lastDigit = number % 10;
+	lastDigit = number % 10;
 
 	if (number >= 10)
 	{
