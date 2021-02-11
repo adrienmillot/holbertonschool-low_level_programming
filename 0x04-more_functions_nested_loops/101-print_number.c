@@ -9,26 +9,19 @@
  */
 void print_number(int n)
 {
-	unsigned int lastDigit;
-	int number;
+	unsigned int number;
 
-	if (number < 0)
+	number = n;
+
+	if (n < 0)
 	{
-		_putchar('-');
-		number *= -1;
-	}
-	else
-	{
-		number = n;
+		_putchar(45);
 	}
 
-	if (number >= 10)
+	if (number / 10)
 	{
-		number /= 10;
-		print_number(number);
+		print_number(number / 10);
 	}
 
-	lastDigit = number % 10;
-
-	_putchar(lastDigit + '0');
+	_putchar(number % 10 + 48);
 }
