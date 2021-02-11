@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * print_number - print a number.
@@ -9,21 +10,21 @@
  */
 void print_number(int n)
 {
-	int lastDigit;
+	unsigned int lastDigit;
+	int number;
 
-	if (n < 0)
+	if (number < 0)
 	{
 		_putchar('-');
-		n *= -1;
+		number = -n;
 	}
 
-	lastDigit = n % 10;
+	lastDigit = number % 10;
 
-	if (n >= 10)
+	if (number >= 10)
 	{
-		n /= 10;
-		print_number(n);
+		number /= 10;
+		print_number(number);
 	}
-
 	_putchar(lastDigit + '0');
 }
