@@ -32,7 +32,7 @@ void puts_half(char *str)
 	int cLoop, size, limit;
 
 	size = _strlen(str);
-	limit = (size % 2 != 0) ? (size + 1) / 2: size / 2;
+	limit = (size % 2 != 0) ? (size + 1) / 2 : size / 2;
 
 	for (cLoop = limit; cLoop < size; cLoop++)
 	{
