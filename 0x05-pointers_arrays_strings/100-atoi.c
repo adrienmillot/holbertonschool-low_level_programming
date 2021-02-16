@@ -41,28 +41,24 @@ int isNumber(char c)
  */
 int _atoi(char *s)
 {
-	char sign = 1, current, next, previous;
+	char sign = 1, current;
 	int size = _strlen(s), cLoop;
 	unsigned int number = 0;
 
 	for (cLoop = 0; cLoop < size; cLoop++)
 	{
-		previous = s[cLoop - 1];
 		current = s[cLoop];
-		next = s[cLoop + 1];
 
 		if (isNumber(current))
 		{
 			number *= 10;
 			number += current - 48;
 		}
-
-		if (current == '-')
+		else if (current == '-')
 		{
 			sign = -sign;
 		}
-
-		if (cLoop < size - 1 && isNumber(current) && !isNumber(next))
+		else if (number > 0)
 		{
 			break;
 		}
