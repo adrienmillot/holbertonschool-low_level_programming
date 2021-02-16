@@ -57,7 +57,7 @@ int _atoi(char *s)
 			number += current - 48;
 		}
 
-		if (previous == '-' && isNumber(current))
+		if (current == '-')
 		{
 			sign = -sign;
 		}
