@@ -42,7 +42,8 @@ int isNumber(char c)
 int _atoi(char *s)
 {
 	char sign = 1, current, next, previous;
-	int size = _strlen(s), cLoop, number = 0;
+	int size = _strlen(s), cLoop;
+	unsigned int number = 0;
 
 	for (cLoop = 0; cLoop < size; cLoop++)
 	{
