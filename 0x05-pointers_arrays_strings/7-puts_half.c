@@ -29,9 +29,12 @@ int _strlen(char *s)
  */
 void puts_half(char *str)
 {
-	int cLoop, size = _strlen(str);
+	int cLoop, size, limit;
 
-	for (cLoop = (_strlen(str)) / 2; cLoop < size; cLoop++)
+	size = _strlen(str);
+	limit = (size % 2 != 0) ? (size + 1) / 2: size / 2;
+
+	for (cLoop = limit; cLoop < size; cLoop++)
 	{
 		_putchar(str[cLoop]);
 	}
