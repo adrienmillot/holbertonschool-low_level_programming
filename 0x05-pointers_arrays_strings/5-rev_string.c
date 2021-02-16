@@ -27,15 +27,18 @@ int _strlen(char *s)
  */
 void rev_string(char *s)
 {
+	int size = _strlen(s), right = size - 1, left, limit;
 	char temp;
-	int length = _strlen(s) - 1, size = 0;
 
-	while ((length - 2) / 2 > 0)
+	size = _strlen(s);
+	right = size - 1;
+	limit = (size % 2 == 0) ? (size + 1) / 2 : size / 2;
+
+	for (left = 0; left < limit; left++)
 	{
-		temp = s[size];
-		s[size] = s[length];
-		s[length] = temp;
-		length--;
-		size++;
+		temp = s[left];
+		s[left] = s[right];
+		s[right] = temp;
+		right--;
 	}
 }
