@@ -30,8 +30,9 @@ void rev_string(char *s)
 	char temp;
 	int length = _strlen(s) - 1, size = 0;
 
-	while (length / 2 > 0)
+	while ((length - 2) / 2 > 0)
 	{
+		// printf("%c <-> %c\n", s[size], s[length]);
 		temp = s[size];
 		s[size] = s[length];
 		s[length] = temp;
