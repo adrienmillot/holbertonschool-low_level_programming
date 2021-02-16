@@ -59,12 +59,11 @@ int _atoi(char *s)
 
 		if (previous == '-' && isNumber(current))
 		{
-			sign = -1;
+			sign = -sign;
 		}
 
 		if (cLoop < size - 1 && isNumber(current) && !isNumber(next))
 		{
-			sign = 1;
 			break;
 		}
 	}
