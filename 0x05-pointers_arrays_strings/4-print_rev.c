@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "holberton.h"
 
 /**
  * _strlen - returns the length of a string
@@ -31,9 +31,9 @@ void print_rev(char *s)
 
 	while (length >= 0)
 	{
-		putchar(s[length]);
+		_putchar(s[length]);
 		length--;
 	}
 
-	putchar('\n');
+	_putchar('\n');
 }
