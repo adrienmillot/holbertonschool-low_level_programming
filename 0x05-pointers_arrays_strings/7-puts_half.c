@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "holberton.h"
 
 /**
  * _strlen - returns the length of a string
@@ -33,7 +33,7 @@ void puts_half(char *str)
 
 	for (cLoop = (_strlen(str)) / 2; cLoop < size; cLoop++)
 	{
-		putchar(str[cLoop]);
+		_putchar(str[cLoop]);
 	}
-	putchar('\n');
+	_putchar('\n');
 }
