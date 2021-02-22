@@ -16,5 +16,5 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 		dest[cLoop] = src[cLoop];
 	}
 
-	return dest;
+	return (dest);
 }
