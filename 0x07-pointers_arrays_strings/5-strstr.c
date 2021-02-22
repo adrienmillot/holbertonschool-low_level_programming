@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 /**
  * _strlen - returns the length of a string
  *
@@ -45,5 +47,5 @@ char *_strstr(char *haystack, char *needle)
 		}
 	}
 
-	return (haystack);
+	return (NULL);
 }
