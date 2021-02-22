@@ -1,27 +1,4 @@
 /**
- * inArray - Search a character in an array
- *
- * @c: character to search
- * @s: character array where to search
- *
- * Return: true if success
- */
-int inArray(char c, char *s)
-{
-	int cLoop;
-
-	for (cLoop = 0; s[cLoop] != '\0'; cLoop++)
-	{
-		if (s[cLoop] == c)
-		{
-			return (1);
-		}
-	}
-
-	return (0);
-}
-
-/**
  * _strspn - gets the length of a prefix substring.
  *
  * @s: string to search
@@ -32,22 +9,18 @@ int inArray(char c, char *s)
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int length = 0, maxLength = 0;
-	int cLoop;
+	int sLoop, aLoop;
 
-	for (cLoop = 0; s[cLoop] != '\0'; cLoop++)
+	for (sLoop = 0; s[sLoop] != '\0'; sLoop++)
 	{
-		if (inArray(s[cLoop], accept))
+		for (aLoop = 0; accept[aLoop] != s[sLoop]; aLoop++)
 		{
-			length++;
-		}
-		else
-		{
-			if (length > maxLength)
-				maxLength = length;
-			length = 0;
+			if ('\0' == accept[aLoop])
+			{
+				return (sLoop);
+			}
 		}
 	}
 
-	return (maxLength);
+	return (sLoop);
 }
