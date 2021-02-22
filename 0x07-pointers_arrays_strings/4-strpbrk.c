@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 /**
  * inArray - Search a character in an array
  *
@@ -41,5 +43,5 @@ char *_strpbrk(char *s, char *accept)
 		s++;
 	}
 
-	return (s);
+	return (NULL);
 }
