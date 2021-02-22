@@ -31,7 +31,12 @@ int _strlen(char *s)
  */
 char *_strstr(char *haystack, char *needle)
 {
-	int haystackLoop, needleLoop, size = _strlen(needle);
+	int haystackLoop = 0, needleLoop = 0, size = _strlen(needle);
+
+	if (needle[0] == '\0')
+	{
+		return (haystack);
+	}
 
 	for (
 		haystackLoop = 0, needleLoop = 0;
