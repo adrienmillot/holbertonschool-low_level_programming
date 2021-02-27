@@ -15,6 +15,9 @@ do
 	fi
 done
 
+rm -Rf *.c
+rm -Rf *.o
+
 OFILES=$(find . -name "*.c" -type f)
 
 ar rc liball.a $OFILES
