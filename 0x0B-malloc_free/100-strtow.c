@@ -121,9 +121,14 @@ char **strtow(char *str)
 	size = _strlen(str);
 	word_number = wordNumber(str);
 
+	if (str == NULL || !str || word_number == 0)
+	{
+		return (NULL);
+	}
+
 	words = malloc(sizeof(char *) * (word_number + 1));
 
-	if (words == NULL || str == NULL || !str || word_number == 0)
+	if (words == NULL)
 	{
 		return (NULL);
 	}
