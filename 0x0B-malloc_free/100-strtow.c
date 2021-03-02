@@ -123,7 +123,7 @@ char **strtow(char *str)
 
 	words = malloc(sizeof(char *) * (word_number + 1));
 
-	if (words == NULL || str == NULL)
+	if (words == NULL || str == NULL || str[0] == '\0')
 	{
 		return (NULL);
 	}
