@@ -150,7 +150,7 @@ char **strtow(char *str)
 			}
 		}
 	}
-	words[cLoop1] = NULL;
+	words[cLoop1] = 0;
 
 	return (words);
 }
