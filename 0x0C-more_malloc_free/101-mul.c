@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+/**
+ * _isNull - check if string is nullable
+ *
+ * @s: string to verify
+ *
+ * Return: 1 if string is null.
+ */
 int _isNull(char *s)
 {
 	if (*s == '\0')
