@@ -2,14 +2,30 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+int _isNull(char *s)
+{
+	if (*s == '\0')
+	{
+		return (1);
+	}
+	if (*s != '0')
+	{
+		return (0);
+	}
+	else
+	{
+		return (_isNull(s + 1));
+	}
+}
+
 /**
- * isNumber - check if string is a number
+ * _isNumber - check if string is a number
  *
  * @s: string to verify
  *
  * Return: 1 if string is a number.
  */
-int isNumber(char *s)
+int _isNumber(char *s)
 {
 	if (*s == '\0')
 	{
@@ -21,7 +37,7 @@ int isNumber(char *s)
 	}
 	else
 	{
-		return (isNumber(s + 1));
+		return (_isNumber(s + 1));
 	}
 }
 
@@ -67,21 +83,83 @@ int *_memset(int *s, int b, unsigned int n)
 }
 
 /**
- * multiply - multiplies two positive numbers.
+ * _intermediate_multiply - multiplication by the number 2
+ *
+ * @prmResult: array of the current result
+ * @prmCLoop: current index loop of the number 1
+ * @prmDigit: current digit to multiply
+ * @prmNum: Number 2 to multiply
+ *
+ * Return: integer number
+ */
+int *_intermediate_multiply(
+	int *prmResult,
+	int prmCLoop,
+	int prmDigit,
+	char *prmNum
+) {
+	int carry = 0, cLoop2 = 0, size = _strlen_recursion(prmNum), indexNumber;
+	int digit, sum = 0;
+
+	for (indexNumber = size - 1; indexNumber >= 0; indexNumber--)
+	{
+		digit = prmNum[indexNumber] - 48;
+		sum = prmDigit * digit + prmResult[prmCLoop + cLoop2] + carry;
+		carry = sum / 10;
+		prmResult[prmCLoop + cLoop2] = sum % 10;
+		cLoop2++;
+	}
+
+	if (carry > 0)
+	{
+		prmResult[prmCLoop + cLoop2] += carry;
+	}
+
+	return (prmResult);
+}
+
+/**
+ * _revInt - create a reverted array of the result
+ *
+ * @prmNum: array result
+ * @prmSize: size of the result
+ *
+ * Return: character array
+ */
+char *_revInt(int *prmNum, int prmSize)
+{
+	int digit, indexNumber1, indexNumber2;
+	char *s;
+
+	indexNumber1 = prmSize - 1;
+	s = malloc(sizeof(char) * (prmSize + 1));
+
+	for (indexNumber2 = 0; indexNumber2 < prmSize; indexNumber2++)
+	{
+		digit = prmNum[indexNumber1 - indexNumber2];
+		s[indexNumber2] = digit + 48;
+	}
+
+	s[prmSize] = '\0';
+
+	return (s);
+}
+
+/**
+ * _multiply - multiplies two positive numbers.
  *
  * @prmNum1: char number 1
  * @prmNum2: char number 2
  *
  * Return: result.
  */
-char *multiply(char *prmNum1, char *prmNum2)
+char *_multiply(char *prmNum1, char *prmNum2)
 {
 	int size1 = _strlen_recursion(prmNum1);
 	int size2 = _strlen_recursion(prmNum2);
 	int size = size1 + size2;
 	int *result = malloc(sizeof(int) * size);
-	int cLoop1 = 0, cLoop2 = 0, indexNumber1, indexNumber2, carry, digit1, digit2;
-	int sum = 0;
+	int cLoop1 = 0, indexNumber1, digit1;
 	char *s;
 
 	if (result == NULL)
@@ -98,29 +176,18 @@ char *multiply(char *prmNum1, char *prmNum2)
 
 	for (indexNumber1 = size1 - 1; indexNumber1 >= 0; indexNumber1--)
 	{
-		carry = 0;
 		digit1 = prmNum1[indexNumber1] - 48;
-		cLoop2 = 0;
 
-		for (indexNumber2 = size2 - 1; indexNumber2 >= 0; indexNumber2--)
-		{
-			digit2 = prmNum2[indexNumber2] - 48;
-			sum = digit1 * digit2 + result[cLoop1 + cLoop2] + carry;
-			carry = sum / 10;
-			result[cLoop1 + cLoop2] = sum % 10;
-			cLoop2++;
-		}
-
-		if (carry > 0)
-		{
-			result[cLoop1 + cLoop2] += carry;
-		}
+		result = _intermediate_multiply(result, cLoop1, digit1, prmNum2);
 
 		cLoop1++;
 	}
 
-	for (indexNumber1 = cLoop1 + cLoop2 - 1; indexNumber1 >= 0 && result[indexNumber1] == 0; indexNumber1--)
-	{
+	for (
+		indexNumber1 = size - 1;
+		indexNumber1 >= 0 && result[indexNumber1] == 0;
+		indexNumber1--
+	) {
 		if (result[indexNumber1] != 0)
 			break;
 	}
@@ -131,15 +198,8 @@ char *multiply(char *prmNum1, char *prmNum2)
 	}
 
 	size = indexNumber1 + 1;
-	s = malloc(sizeof(char) * (size + 1));
 
-	for (indexNumber2 = 0; indexNumber2 < size; indexNumber2++)
-	{
-		digit1 = result[indexNumber1 - indexNumber2];
-		s[indexNumber2] = digit1 + 48;
-	}
-
-	s[size] = '\0';
+	s = _revInt(result, indexNumber1 + 1);
 
 	return (s);
 }
@@ -147,11 +207,14 @@ char *multiply(char *prmNum1, char *prmNum2)
 /**
  * main - check the code for Holberton School students.
  *
+ * @argc: number of arguments
+ * @argv: argument's array
+ *
  * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
-	int cLoop;
+	int cLoop, hasNullableArgument;
 
 	if (argc != 3)
 	{
@@ -161,14 +224,20 @@ int main(int argc, char *argv[])
 
 	for (cLoop = 1; cLoop < argc; cLoop++)
 	{
-		if (!isNumber(argv[cLoop]))
+		if (!_isNumber(argv[cLoop]))
 		{
 			printf("Error\n");
 			exit(98);
 		}
+
+		if (!hasNullableArgument && _isNull(argv[cLoop]))
+			hasNullableArgument = 1;
 	}
 
-	printf("%s\n", multiply(argv[1], argv[2]));
+	if (hasNullableArgument)
+		printf("%s\n", "0");
+	else
+		printf("%s\n", _multiply(argv[1], argv[2]));
 
 	return (0);
 }
