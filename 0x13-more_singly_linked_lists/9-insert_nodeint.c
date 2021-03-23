@@ -59,17 +59,21 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		return (NULL);
 
 	length = listint_len(*head);
+	new = createNode(n);
 
 	if (idx == 0)
-		before = *head;
-	else if (idx > (unsigned int) length - 1)
+	{
+		new->next = (*head);
+		*head = new;
+		return (new);
+	}
+	else if (idx > (unsigned int) length)
 	{
 		return (NULL);
 	}
 	else
 		before = get_nodeint_at_index(*head, idx - 1);
 
-	new = createNode(n);
 	new->next = before->next;
 	before->next = new;
 
