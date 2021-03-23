@@ -5,7 +5,7 @@
 /**
  * createNode - create a new node
  *
- * @prmStr: name
+ * @prmNbr: name
  *
  * Return: new element
  */
@@ -45,10 +45,10 @@ listint_t *getLastNode(listint_t *prmHeadNode)
 /**
  * add_nodeint_end - adds a new node at the end of a listint_t list
  *
- * @head:
- * @n:
+ * @head: first element
+ * @n: number
  *
- * Return: 
+ * Return: new node
  */
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
