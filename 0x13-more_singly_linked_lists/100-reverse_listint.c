@@ -10,23 +10,20 @@
  */
 listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *tmp;
+	listint_t *n, *p;
 
-	tmp = *head;
+	if (!head || !*head)
+		return (NULL);
 
-	/*if (*head == NULL)
-		return (NULL);*/
-
-	if (tmp->next == NULL)
-		return (tmp);
-
-	reverse_listint(&(tmp->next));
-	printf("{current: %d, next: %d}\n", tmp->n, tmp->next->n);
-	tmp->next->next = tmp;
-	tmp = tmp->next;
-	tmp->next = NULL;
-	/*(*head)->next = NULL;*/
-	printf("{current: %d}\n\n", tmp->n);
-
-	return (tmp);
+	n = NULL;
+	p = NULL;
+	while ((*head) != NULL)
+	{
+		n = (*head)->next;
+		(*head)->next = p;
+		p = (*head);
+		(*head) = n;
+	}
+	(*head) = p;
+	return (p);
 }
