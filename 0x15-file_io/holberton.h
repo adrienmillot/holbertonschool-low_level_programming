@@ -8,8 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define READ_ACTION 0
-#define WRITE_ACTION 1
 #define EXIT_WRONG_PARAMETER 97
 #define EXIT_READ_ERROR 98
 #define EXIT_WRITE_ERROR 99
