@@ -12,38 +12,34 @@
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 	dlistint_t *before, *after, *current, *first;
-	int length;
+	int i = 0;
 
 	first = *head;
 
 	if (first == NULL)
 		return (-1);
 
-	length = listint_len(*head);
-
-	if (length == 0 || index > (unsigned int) length - 1)
-	{
-		return (-1);
-	}
-
 	if (index == 0)
 	{
-		*head = (*head)->next;
-		free(first);
+		*head = current->next;
+		current->prev = NULL;
+		free(current);
 		return (1);
 	}
 
-	before = get_nodeint_at_index(first, index - 1);
-	if (index == (unsigned int) length - 1)
-		after = NULL;
-	else
-		after = get_nodeint_at_index(first, index + 1);
+	while (i < index)
+	{
+		before = current;
+		if (current->next == NULL)
+			return (-1);
 
-	current = get_nodeint_at_index(first, index);
-	before->next = after;
+		current = current->next;
+		i++;
+	}
+	before->next = current->next;
 
-	if (after != NULL)
-		after->prev = before;
+	if (current->next != NULL)
+		current->next->prev = before;
 	free(current);
 
 	return (1);
