@@ -57,6 +57,7 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 
 	if (*head == NULL)
 	{
+		new->prev = NULL;
 		*head = new;
 	}
 	else
@@ -64,7 +65,6 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 		last = _getLastNode(*head);
 		if (last == NULL)
 		{
-			printf("failed\n");
 			return (NULL);
 		}
 		last->next = new;
