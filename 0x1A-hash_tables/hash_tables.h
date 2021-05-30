@@ -44,4 +44,5 @@ int hash_table_set(
 	const char *prmKey,
 	const char *prmValue
 );
+char *hash_table_get(const hash_table_t *prmHashTable, const char *prmKey);
 #endif
