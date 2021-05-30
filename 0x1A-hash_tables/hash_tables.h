@@ -39,4 +39,9 @@ unsigned long int key_index(
 	const unsigned char *prmKey,
 	unsigned long int prmSize
 );
+int hash_table_set(
+	hash_table_t *prmHashTable,
+	const char *prmKey,
+	const char *prmValue
+);
 #endif
